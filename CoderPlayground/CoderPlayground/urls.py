@@ -15,10 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from AppPlayground.views import inicio, hijo, padre
+
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('AppPlayground/', include('AppPlayground.urls'))
+    path('AppPlayground/', include('AppPlayground.urls')),
+    path('', inicio),
+    path('Hijo/', hijo),
+    path('Padre/', padre)
 ]
     
