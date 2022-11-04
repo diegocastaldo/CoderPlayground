@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from AppPlayground.views import inicio, hijo, padre
+from AppPlayground.views import inicio, hijo, padre, nobelFormulario
+
 
 
 
@@ -25,6 +26,7 @@ urlpatterns = [
     path('AppPlayground/', include('AppPlayground.urls')),
     path('', inicio),
     path('Hijo/', hijo),
-    path('Padre/', padre)
+    path('Padre/', padre),
+    path('Nobel/', nobelFormulario)
 ]
     
