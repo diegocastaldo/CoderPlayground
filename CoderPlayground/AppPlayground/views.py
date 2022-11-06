@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from AppPlayground.forms import NobelFormulario
+from AppPlayground.forms import FormCajonera, FormEscritorio, FormMesaluz
 
 # Create your views here.
 def inicio(request):
@@ -11,21 +11,19 @@ def hijo(request):
 def padre(request):
     return render(request,'AppPlayground/Padre.html')
 
-
  
-def nobelFormulario(request):
+def FormEscritorio(request):
  
       if request.method == "POST":
  
-            miFormulario = NobelFormulario(request.POST) # Aqui me llega la informacion del html
-            print(miFormulario)
- 
+            miFormulario = FormEscritorio(request.POST) # Aqui me llega la informacion del html
+           
             if miFormulario.is_valid:
                   informacion = miFormulario.cleaned_data
-                  Nobel = Nobel(nombre=informacion["nombre"], apellido=informacion["apellido"], ano=informacion["año"], especialidad=informacion["especialidad"])
-                  Nobel.save()
+                  Escritorio = Escritorio(modelo=informacion["modelo"], medida=informacion["medida"], stock=informacion["stock"])
+                  Escritorio.save()
                   return render(request, "AppPlayground/TInicio.html")
       else:
-            miFormulario = NobelFormulario()
+            miFormulario = FormEscritorio()
  
-      return render(request, "AppPlayground/NobelFormulario.html", {"miFormulario": miFormulario})
+      return render(request, "AppPlayground/FormEscritorio.html", {"miFormulario": miFormulario})

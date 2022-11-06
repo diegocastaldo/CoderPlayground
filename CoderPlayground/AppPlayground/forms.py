@@ -1,11 +1,17 @@
-from socket import fromshare
 from django import forms
 
-class NobelFormulario(forms.Form):
-    nombre=forms.CharField(max_length=40)
-    apellido=forms.CharField(max_length=40)
-    ano=forms.DateField()
-    especialidad=forms.CharField(max_length=40)
+class FormEscritorio(forms.Form):
+    modelo=forms.CharField(max_length=40)
+    medida=forms.IntegerField()
+    stock=forms.IntegerField()
     
+class FormMesaluz(forms.Form):
+    modelo=forms.CharField(max_length=40)
+    medida=forms.IntegerField()
+    stock=forms.IntegerField()
 
-
+class FormCajonera(forms.Form):
+    modelo=forms.CharField(max_length=40)
+    medida=forms.IntegerField()
+    cajones=forms.IntegerField()
+    stock=forms.IntegerField()
