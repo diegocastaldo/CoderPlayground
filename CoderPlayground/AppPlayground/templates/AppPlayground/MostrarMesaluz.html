@@ -1,0 +1,21 @@
+{% extends 'AppPlayground/Padre.html' %}
+
+{% load static %}
+
+
+{% block Cambiante %}
+
+    <h1>Lista de Mesas de Luz</h1>
+
+
+    <ul>
+        
+        {% for mesaluz in mesaluzs %}
+            <li>
+                {{mesaluz}}
+            </li>
+        {% endfor %}
+            
+    </ul>
+
+{% endblock Cambiante %}

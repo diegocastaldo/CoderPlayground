@@ -18,4 +18,4 @@ class Cajonera(models.Model):
     modelo=models.CharField(max_length=50)
     medida=models.IntegerField()
     stock=models.IntegerField()
-    cajones=models.IntegerField()
+    
