@@ -6,5 +6,5 @@ from AppPlayground import views
 urlpatterns = [
     path('', views.inicio),
     path('Hijo/', views.hijo),
-    path('FormEscritorio', views.FormEscritorio,name='FormEscritorio')
+    path('FormEscritorio', views.formEscritorio,name='FormEscritorio')
 ]

@@ -1,7 +1,10 @@
 from django.shortcuts import render
+from django.template import Context, Template
 from AppPlayground.forms import FormCajonera, FormEscritorio, FormMesaluz
-
+from AppPlayground.models import Escritorio, Mesaluz, Cajonera
+from django.http import HttpResponseRedirect
 # Create your views here.
+
 def inicio(request):
     return render(request,'AppPlayground/TInicio.html')
 
@@ -12,18 +15,19 @@ def padre(request):
     return render(request,'AppPlayground/Padre.html')
 
  
-def FormEscritorio(request):
+def formEscritorio(request):
  
-      if request.method == "POST":
+      if request.method == 'POST':
  
             miFormulario = FormEscritorio(request.POST) # Aqui me llega la informacion del html
            
-            if miFormulario.is_valid:
-                  informacion = miFormulario.cleaned_data
-                  Escritorio = Escritorio(modelo=informacion["modelo"], medida=informacion["medida"], stock=informacion["stock"])
-                  Escritorio.save()
-                  return render(request, "AppPlayground/TInicio.html")
+            if miFormulario.is_valid():
+                  data = miFormulario.cleaned_data   
+                  escritorio = Escritorio(modelo=data["modelo"], medida=data["medida"], stock=data["stock"])
+                  escritorio.save()
+                  return HttpResponseRedirect("AppPlayground/TInicio.html")
       else:
-            miFormulario = FormEscritorio()
- 
-      return render(request, "AppPlayground/FormEscritorio.html", {"miFormulario": miFormulario})
+        
+        miFormulario = FormEscritorio()
+        
+        return render(request, "AppPlayground/FormEscritorio.html", {"miFormulario": miFormulario})

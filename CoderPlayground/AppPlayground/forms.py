@@ -1,4 +1,6 @@
 from django import forms
+from .models import Escritorio
+
 
 class FormEscritorio(forms.Form):
     modelo=forms.CharField(max_length=40)
@@ -13,5 +15,4 @@ class FormMesaluz(forms.Form):
 class FormCajonera(forms.Form):
     modelo=forms.CharField(max_length=40)
     medida=forms.IntegerField()
-    cajones=forms.IntegerField()
     stock=forms.IntegerField()
