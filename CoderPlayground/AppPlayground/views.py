@@ -25,9 +25,16 @@ def formEscritorio(request):
                   data = miFormulario.cleaned_data   
                   escritorio = Escritorio(modelo=data["modelo"], medida=data["medida"], stock=data["stock"])
                   escritorio.save()
-                  return HttpResponseRedirect("AppPlayground/TInicio.html")
+                  return HttpResponseRedirect("")
       else:
         
         miFormulario = FormEscritorio()
         
         return render(request, "AppPlayground/FormEscritorio.html", {"miFormulario": miFormulario})
+
+def mostrarEscritorios(request):
+
+    escritorios = Escritorio.objects.all()
+
+    return render(request, "AppPlayground/MostrarEscritorios.html", {"escritorios": escritorios})
+
