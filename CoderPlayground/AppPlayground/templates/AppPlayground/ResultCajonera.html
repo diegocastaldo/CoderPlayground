@@ -1,0 +1,29 @@
+{% extends 'AppPlayground/Padre.html' %}
+
+{% load static %}
+
+
+{% block Cambiante %}
+
+    <p>Cajoneras del siguiente modelo: {{modelo}}</p>
+
+    {% if cajoneras %}
+
+        <ul>
+
+            {% for cajonera in cajoneras %}
+                <li>
+                    {{cajonera.modelo}}
+                </li>
+            {% endfor %}
+                
+        </ul>
+
+    {% else %}
+
+        <p>No hubo coincidencias!</p>
+        
+    {% endif %}
+        
+
+{% endblock Cambiante %}

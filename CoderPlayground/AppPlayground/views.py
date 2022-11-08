@@ -52,38 +52,6 @@ def eliminarEscritorio(request, id):
         return render(request, "AppPlayground/MostrarEscritorio.html", {"escritorios": escritorios})        
 
 
-def editarEscritorio(request, id):
-
-    escritorio = Escritorio.objects.get(id=id)
-
-    if request.method == 'POST':
-
-        miFormulario = FormEscritorio(request.POST)
-
-        if miFormulario.is_valid():
-
-            data = miFormulario.cleaned_data
-
-            escritorio.modelo = data["modelo"]
-            escritorio.medida = data["medida"]
-            escritorio.stock = data["stock"]
-            
-            escritorio.save()
-
-            return HttpResponse("AppPlayground/MostrarEscritorio.html")
-    
-    else:
-
-        miFormulario = FormEscritorio(initial={
-            "modelo": escritorio.modelo,
-            "medida": escritorio.medida,
-            "stock": escritorio.stock,
-        })
-
-        return render(request, "AppPlayground/EditarEscritorio.html", {"miFormulario": miFormulario, "id": escritorio.id})
-
-
-        
 
 def buscarEscritorio(request):
     return render(request, "AppPlayground/BuscarEscritorio.html")
@@ -127,10 +95,43 @@ def formMesaluz(request):
 
 def mostrarMesaluz(request):
 
-    mesaluz = Mesaluz.objects.all()
+    mesas = Mesaluz.objects.all()
 
-    return render(request, "AppPlayground/MostrarMesaluz.html", {"mesaluz": mesaluz})
+    return render(request, "AppPlayground/MostrarMesaluz.html", {"mesaluz": mesas})
 
+
+def eliminarMesaluz(request, id):
+
+    if request.method == 'POST':
+
+        mesa = Mesaluz.objects.get(id=id)
+        mesa.delete()
+
+        mesas = Mesaluz.objects.all()
+
+        return render(request, "AppPlayground/MostrarMesaluz.html", {"mesas": mesas})        
+
+
+
+def buscarMesaluz(request):
+    return render(request, "AppPlayground/BuscarMesaluzhtml")
+
+def buscar(request):
+ 
+
+    if request.GET["modelo"]:
+
+        modelo = request.GET["modelo"]
+
+        mesas = Mesaluz.objects.filter(modelo__icontains=modelo)
+        
+        return render(request, "AppPlayground/ResultMesaluz.html", {"mesas": mesas, "modelo": modelo})
+
+    else:
+
+        respuesta = "No enviaste datos"
+
+    return HttpResponse(respuesta)
 
 #ACA VAN LAS FUNCIONES DE CAJONERAS#
 
@@ -153,6 +154,45 @@ def formCajonera(request):
         return render(request, "AppPlayground/FormCajonera.html", {"miFormulario": miFormulario})
 
 
+def mostrarCajonera(request):
+
+    cajoneras = Escritorio.objects.all()
+
+    return render(request, "AppPlayground/MostrarCajonera.html", {"cajoneras": cajoneras})
+
+
+def eliminarCajonera(request, id):
+
+    if request.method == 'POST':
+
+        cajonera = Cajonera.objects.get(id=id)
+        cajonera.delete()
+
+        cajoneras = Cajonera.objects.all()
+
+        return render(request, "AppPlayground/MostrarCajonera.html", {"cajoneras": cajoneras})        
+
+
+
+def buscarCajonera(request):
+    return render(request, "AppPlayground/BuscarCajonera.html")
+
+def buscar(request):
+ 
+
+    if request.GET["modelo"]:
+
+        modelo = request.GET["modelo"]
+
+        cajoneras = Cajonera.objects.filter(modelo__icontains=modelo)
+        
+        return render(request, "AppPlayground/ResultCajonera.html", {"cajoneras": cajoneras, "modelo": modelo})
+
+    else:
+
+        respuesta = "No enviaste datos"
+
+    return HttpResponse(respuesta)
 
 
 

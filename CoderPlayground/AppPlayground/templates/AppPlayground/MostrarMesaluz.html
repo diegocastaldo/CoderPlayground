@@ -5,17 +5,17 @@
 
 {% block Cambiante %}
 
-    <h1>Lista de Escritorios</h1>
+    <h1>Lista de Mesas de Luz</h1>
 
 
     <ul>
         
-        {% for escritorio in escritorios %}
+        {% for mesa in mesas %}
             <li>
-                {{escritorio}}
+                {{mesa}}
             </li>
             <div>
-                <form action="{% url 'EliminarEscritorio' escritorio.id %}" method="POST">{% csrf_token %}
+                <form action="{% url 'EliminarMesaluz' mesa.id %}" method="POST">{% csrf_token %}
                     <button type="submit"> Eliminar </button>
                 </form>
             </div>

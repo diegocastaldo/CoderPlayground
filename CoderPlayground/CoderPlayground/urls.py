@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from AppPlayground.views import (inicio,formCajonera,formEscritorio,formMesaluz,
-editarEscritorio,eliminarEscritorio,
-mostrarEscritorio,hijo, padre, 
-buscarEscritorio,buscar)
+from AppPlayground.views import (inicio, hijo, padre,
+formCajonera,formEscritorio,formMesaluz,
+eliminarEscritorio, eliminarCajonera, eliminarMesaluz,
+mostrarEscritorio, mostrarCajonera, mostrarMesaluz,
+buscarEscritorio, buscarCajonera, buscarMesaluz,
+buscar)
 
 
 urlpatterns = [
@@ -31,8 +33,13 @@ urlpatterns = [
     path('FormCajonera/', formCajonera, name="FormCajonera"),
     path('MostrarEscritorio/', mostrarEscritorio, name="MostrarEscritorio"),
     path('EliminarEscritorio/<int:id>', eliminarEscritorio, name="EliminarEscritorio"),
-    path('EditarEscritorio/<int:id>', editarEscritorio, name="EditarEscritorio"),
     path('BuscarEscritorio/', buscarEscritorio, name="BuscarEscritorio"),
+    path('MostrarCajonera/', mostrarCajonera, name="MostrarCajonera"),
+    path('EliminarCajonera/<int:id>', eliminarCajonera, name="EliminarCajonera"),
+    path('BuscarCajonera/', buscarCajonera, name="BuscarCajonera"),
+    path('MostrarMesaluz/', mostrarMesaluz, name="MostrarMesaluz"),
+    path('EliminarMesaluz/<int:id>', eliminarMesaluz, name="EliminarMesaluz"),
+    path('BuscarMesaluz/', buscarMesaluz, name="BuscarMesaluz"),
     path("Buscar/",buscar, name="Buscar")
     
   
