@@ -12,7 +12,7 @@
         
         {% for cajonera in cajoneras %}
             <li>
-                {{escritorio}}
+                {{cajonera}}
             </li>
             <div>
                 <form action="{% url 'EliminarCajonera' cajonera.id %}" method="POST">{% csrf_token %}

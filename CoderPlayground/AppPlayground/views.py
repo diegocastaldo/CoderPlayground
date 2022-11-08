@@ -97,7 +97,7 @@ def mostrarMesaluz(request):
 
     mesas = Mesaluz.objects.all()
 
-    return render(request, "AppPlayground/MostrarMesaluz.html", {"mesaluz": mesas})
+    return render(request, "AppPlayground/MostrarMesaluz.html", {"mesas": mesas})
 
 
 def eliminarMesaluz(request, id):
@@ -156,7 +156,7 @@ def formCajonera(request):
 
 def mostrarCajonera(request):
 
-    cajoneras = Escritorio.objects.all()
+    cajoneras = Cajonera.objects.all()
 
     return render(request, "AppPlayground/MostrarCajonera.html", {"cajoneras": cajoneras})
 
