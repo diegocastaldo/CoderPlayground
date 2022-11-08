@@ -1,0 +1,29 @@
+{% extends 'AppPlayground/Padre.html' %}
+
+{% load static %}
+
+
+{% block Cambiante %}
+
+    <p>Escritorios del siguiente modelo: {{modelo}}</p>
+
+    {% if escritorios %}
+
+        <ul>
+
+            {% for escritorio in escritorios %}
+                <li>
+                    {{escritorio.modelo}}
+                </li>
+            {% endfor %}
+                
+        </ul>
+
+    {% else %}
+
+        <p>No hubo coincidencias!</p>
+        
+    {% endif %}
+        
+
+{% endblock Cambiante %}
