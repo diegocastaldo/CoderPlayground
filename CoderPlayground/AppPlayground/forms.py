@@ -1,22 +1,5 @@
 from django import forms
 from .models import *
-
-
-class FormEscritorio(forms.Form):
-    modelo=forms.CharField(max_length=40)
-    medida=forms.IntegerField()
-    stock=forms.IntegerField()
-    
-class FormMesaluz(forms.Form):
-    modelo=forms.CharField()
-    medida=forms.IntegerField()
-    stock=forms.IntegerField()
-
-class FormCajonera(forms.Form):
-    modelo=forms.CharField(max_length=40)
-    medida=forms.IntegerField()
-    stock=forms.IntegerField()
-
 #ACA VAN LOS FORMS DE LA APP DE GOLF
 
 
