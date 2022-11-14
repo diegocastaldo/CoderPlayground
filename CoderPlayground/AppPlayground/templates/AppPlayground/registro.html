@@ -1,0 +1,15 @@
+{% extends 'AppPlayground/Padre.html' %}
+
+{% load static %}
+
+{% block Cambiante %}
+        
+    <form action="{% url 'Registrar' %}" method="POST">{% csrf_token %}
+
+        {{miFormulario.as_p}}
+
+        <input type="submit" value="Registrar"/>
+
+    </form>
+
+{% endblock Cambiante %}

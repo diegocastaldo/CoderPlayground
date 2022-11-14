@@ -1,10 +1,25 @@
 from django.shortcuts import render
 from django.template import Context, Template
-from AppPlayground.forms import FormCajonera, FormEscritorio, FormMesaluz, FormJugador, FormClub, FormTarjeta
+from AppPlayground.forms import FormJugador, FormClub, FormTarjeta, UserCreationForm, UserEditForm, UserRegisterForm
 from AppPlayground.models import *
 from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic import ListView, DeleteView, DetailView, CreateView, UpdateView
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.views import LogoutView
 # Create your views here.
+
+def inicio(request):
+    return render(request,'AppPlayground/TInicio.html')
+
+def padre(request):
+    return render(request,'AppPlayground/Padre.html')
+
+
+# ACÁ VAN LAS VIEWS DE LA APP DE GOLF 
+
 
 # VIEWS DE JUGADOR
 class JugadorList(ListView):
@@ -111,3 +126,101 @@ class TarjetaDelete(DeleteView):
     success_url = '/tarjeta_list/'
 
 
+#ACÁ VAN LAS VIEWS RELACIONADAS AL LOGIN Y CONTROL DE USUARIOS: 
+
+def loginView(request):
+
+    print('method:', request.method)
+    print('post: ', request.POST)
+
+    if request.method == 'POST':
+
+        miFormulario = AuthenticationForm(request, data=request.POST)
+
+        if miFormulario.is_valid():
+
+            data = miFormulario.cleaned_data
+
+            usuario = data["username"]
+            psw = data["password"]
+
+            user = authenticate(username=usuario, password=psw)
+
+            if user:
+
+                login(request, user)
+
+                return render(request, "TInicio.html", {"mensaje": f'Bienvenido {usuario} a IHS' })
+            
+            else:
+
+                return render(request, "TInicio.html", {"mensaje": f'Los datos ingresados no son correctos'})
+
+        return render(request, "TInicio.html", {"mensaje": f'Error, formulario invalido'})
+
+    else:
+
+        miFormulario = AuthenticationForm()
+
+        return render(request, "AppPlayground/login.html", {"miFormulario": miFormulario})
+
+
+def register(request):
+
+    print('method:', request.method)
+    print('post: ', request.POST)
+
+    if request.method == 'POST':
+
+        miFormulario = UserRegisterForm(request.POST)
+
+        if miFormulario.is_valid():
+
+            username = miFormulario.cleaned_data["username"]
+
+            miFormulario.save()
+
+            return render(request, "AppPlayground/TInicio.html", {"mensaje": f'Usuario {username} creado con éxito'})
+
+        else:
+
+            return render(request, "TInicio.html", {"mensaje": f'Error al crear el usuario'})
+
+    else:
+
+        miFormulario = UserRegisterForm()
+
+        return render(request, "AppPlayground/registro.html", {"miFormulario": miFormulario})
+
+
+def editar_perfil(request):
+    
+    print('method:', request.method)
+    print('post: ', request.POST)
+
+    usuario = request.user
+
+    if request.method == 'POST':
+
+        miFormulario = UserEditForm(request.POST)
+
+        if miFormulario.is_valid():
+
+            data = miFormulario.cleaned_data
+
+            usuario.first_name = data["first_name"]
+            usuario.last_name = data["last_name"]
+            usuario.email = data["email"]
+            usuario.set_password(data["password1"])
+
+            usuario.save()
+
+            return render(request, "TInicio.html", {"mensaje": f'Datos actualizados!'})
+        
+        return render(request, "editarPerfil.html", {"mensaje": 'Contraseñas no coinciden'} )
+    
+    else:
+
+        miFormulario = UserEditForm(instance=request.user)
+
+        return render(request, "editarPerfil.html", {"miFormulario": miFormulario})
