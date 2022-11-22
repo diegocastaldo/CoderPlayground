@@ -1,0 +1,15 @@
+{% extends 'AppPlayground/Padre.html' %}
+
+{% load static %}
+
+{% block Cambiante %}
+        
+    <form action="{% url 'CreaJugador' %}" method="POST">{% csrf_token %}
+
+        {{form.as_p}}
+
+        <input type="submit" value="Enviar"/>
+
+    </form>
+
+{% endblock Cambiante %}

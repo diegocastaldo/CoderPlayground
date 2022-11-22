@@ -1,0 +1,30 @@
+{% extends 'AppPlayground/Padre.html' %}
+
+{% load static %}
+
+
+{% block Cambiante %}
+
+    <h1>Lista de Jugadores</h1>
+
+    <ul>
+        
+        {% for jugador in jugadores %}
+            <li>
+                <a href="{% url 'DetalleJugador' jugador.id %}">
+                    {{jugador}}
+                </a>
+            </li>
+            <div>
+                <button>
+                    <a href="{% url 'EliminaJugador' jugador.id %}">Eliminar</a>
+                </button>
+                <button>
+                    <a href="{% url 'ActualizaJugador' jugador.id %}">Editar</a>
+                </button>
+            </div>
+        {% endfor %}
+            
+    </ul>
+
+{% endblock Cambiante %}
