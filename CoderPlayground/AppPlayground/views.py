@@ -14,9 +14,6 @@ from django.contrib.auth.views import LogoutView
 def inicio(request):
     return render(request,'AppPlayground/TInicio.html')
 
-def padre(request):
-    return render(request,'AppPlayground/Padre.html')
-
 
 # ACÁ VAN LAS VIEWS DE LA APP DE GOLF 
 
@@ -109,7 +106,7 @@ class TarjetaCreate(CreateView):
     model = Tarjeta
     template_name = 'AppPlayground/tarjeta_create.html'
     fields = ["club", "fecha", "s1", "s2", "s3", "s4", "s5", "s6","s7","s8","s9","s10","s11","s12","s13","s14","s15","s16","s17","s18"]
-    success_url = '/tarjeta_list/'
+    success_url = 'AppGolf/listaTarjeta/'
 
 
 class TarjetaUpdate(UpdateView):
@@ -117,13 +114,13 @@ class TarjetaUpdate(UpdateView):
     model = Tarjeta
     template_name = 'AppPlayground/tarjeta_update.html'
     fields = ('__all__')
-    success_url = '/tarjeta_list/'
+    success_url = '/listaTarjeta/'
 
 class TarjetaDelete(DeleteView):
 
     model = Tarjeta
     template_name = 'AppPlayground/tarjeta_delete.html'
-    success_url = '/tarjeta_list/'
+    success_url = '/listaTarjeta/'
 
 
 #ACÁ VAN LAS VIEWS RELACIONADAS AL LOGIN Y CONTROL DE USUARIOS: 
@@ -184,7 +181,7 @@ def register(request):
 
         else:
 
-            return render(request, "TInicio.html", {"mensaje": f'Error al crear el usuario'})
+            return render(request, "AppPlayground/TInicio.html", {"mensaje": f'Error al crear el usuario'})
 
     else:
 

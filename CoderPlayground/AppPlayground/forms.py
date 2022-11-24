@@ -60,7 +60,6 @@ class FormClub(forms.Form):
 
 class FormTarjeta(forms.Form):
     nombre=forms.CharField(max_length=50) #Nombre del Jugador
-    score=forms.IntegerField()
     marcador=forms.CharField(max_length=50)
     club=forms.CharField()
     fecha=forms.DateField()
@@ -82,4 +81,5 @@ class FormTarjeta(forms.Form):
     s16=forms.IntegerField()
     s17=forms.IntegerField()
     s18=forms.IntegerField()
+    
 

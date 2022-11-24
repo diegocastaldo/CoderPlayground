@@ -4,7 +4,7 @@
 
 {% block Cambiante %}
         
-    <form action="{% url 'ActualizaJugador' jugador.id %}" method="POST">{% csrf_token %}
+    <form action="{% url 'ActualizaTarjeta' tarjeta.id %}" method="POST">{% csrf_token %}
 
         {{form.as_p}}
 

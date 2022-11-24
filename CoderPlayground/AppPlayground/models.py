@@ -26,13 +26,32 @@ class Club(models.Model):
 
 class Tarjeta(models.Model):
     nombre=models.CharField(max_length=50) #Nombre del Jugador
-    score=models.IntegerField()
     marcador=models.CharField(max_length=50)
     club=models.CharField(max_length=50)
-    fecha=models.DateField()
+    fecha=models.DateField(default=0)
+    s1=models.IntegerField(default=0)
+    s2=models.IntegerField(default=0)
+    s3=models.IntegerField(default=0)
+    s4=models.IntegerField(default=0)
+    s5=models.IntegerField(default=0)
+    s6=models.IntegerField(default=0)
+    s7=models.IntegerField(default=0)
+    s8=models.IntegerField(default=0)
+    s9=models.IntegerField(default=0)
+    s10=models.IntegerField(default=0)
+    s11=models.IntegerField(default=0)
+    s12=models.IntegerField(default=0)
+    s13=models.IntegerField(default=0)
+    s14=models.IntegerField(default=0)
+    s15=models.IntegerField(default=0)
+    s16=models.IntegerField(default=0)
+    s17=models.IntegerField(default=0)
+    s18=models.IntegerField(default=0)
+
+
     
     def __str__(self):
-            return f'{self.club} , {self.score}'
+            return f'{self.club}'
 
 class Avatar(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
